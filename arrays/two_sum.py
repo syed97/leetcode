@@ -27,7 +27,7 @@ class Solution2:
                 d[nums[i]] = i
         return res      
 
-# O(nlogn) solution - two pointers approach. We first sort the array and then assign two pointers
+# O(n*logn) solution - two pointers approach. We first sort the array (hence n*logn) and then assign two pointers
 # at either end of the array. We then check the sum of values at both indices. If the sum is less
 # than the target then we increment the left pointer as we know the target would be greater the current sum.
 # If the sum is greater than the target then we decrement the right pointer so we can move nearer to the target.
