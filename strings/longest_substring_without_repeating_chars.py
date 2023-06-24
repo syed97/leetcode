@@ -20,7 +20,7 @@ Notice that the answer must be a substring, "pwke" is a subsequence and not a su
 '''
 
 # brute force approach - O(n^2)
-class Solution:
+class Solution1:
     def lengthOfLongestSubstring(self, s: str) -> int:
         if len(s) == 0:
             return 0
@@ -39,4 +39,27 @@ class Solution:
                     max_count = count
         return max_count
                 
-# sliding window approach
+'''
+sliding window approach O(n) - iterate over each element and update sliding window using left pointer if a duplicate is encountered.
+The tricky part was to remember to increase left pointer until the duplicate no longer existed e.g. tricky in the case of pweekew.
+Hence, had to add while loop.
+
+Approach is to essentially use left, right pointers to represent a sliding window which gets updated one cnountering duplicates
+and hence the count of the window would also be updated.
+'''
+
+
+class Solution2:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l=0
+        max_count = 0
+        seen = set()
+        for r in range(len(s)):
+            if s[r] in seen:
+                while s[r] in seen:
+                    seen.remove(s[l])
+                    l += 1
+            seen.add(s[r])
+            count = r-l+1
+            max_count = max(max_count,count)
+        return max_count
